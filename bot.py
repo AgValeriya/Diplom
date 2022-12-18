@@ -16,15 +16,12 @@ import vk_api
 	
 
 	
-
 	def loop_bot():
 	    for this_event in longpoll.listen():
 	        if this_event.type == VkEventType.MESSAGE_NEW:
 	            if this_event.to_me:
 	                message_text = this_event.text
 	                return message_text, this_event.user_id
-	
-
 	
 
 	def menu_bot(id_num):
@@ -38,8 +35,6 @@ import vk_api
 	              f"Перейти в черный список - 0\n")
 	
 
-	
-
 	def show_info():
 	    write_msg(user_id, f'Анкеты закончились'
 	                       f'Перейти в избранное - 2'
@@ -47,9 +42,7 @@ import vk_api
 	                       f'Поиск - мужчина 28-35 Санкт-Петербург'
 	                       f'Меню бота - Vkinder')
 	
-
 	
-
 	def reg_new_user(id_num):
 	    write_msg(id_num, 'Вы прошли регистрацию.')
 	    write_msg(id_num,
@@ -68,14 +61,16 @@ import vk_api
 	        msg_texts, user_ids = loop_bot()
 	        if msg_texts == '0':
 	            if nums >= len(alls_users) - 1:
-	                write_msg(user_ids, f'Это была последняя анкета.\n'
+	                write_msg(user_ids, f'Анкеты закончились\n'
 	                                    f'Vkinder - вернуться в меню\n')
-	        # Удаляем запись из бд - избранное
+			
+			
+	        """Удаляем запись избранного"""
 	        elif msg_texts == '1':
 	            delete_db_favorites(users.vk_id)
 	            write_msg(user_ids, f'Анкета успешно удалена.')
 	            if nums >= len(alls_users) - 1:
-	                write_msg(user_ids, f'Это была последняя анкета.\n'
+	                write_msg(user_ids, f'Анкеты закончились\n'
 	                                    f'Vkinder - вернуться в меню\n')
 	        elif msg_texts.lower() == 'q':
 	            write_msg(ids, 'Vkinder - для активации бота.')
@@ -93,7 +88,7 @@ import vk_api
 	        msg_texts, user_ids = loop_bot()
 	        if msg_texts == '0':
 	            if num >= len(all_users) - 1:
-	                write_msg(user_ids, f'Это была последняя анкета.\n'
+	                write_msg(user_ids, f'Анкеты закончились\n'
 	                                    f'Vkinder - вернуться в меню\n')
 
 	        """Удалить из черного списка"""
@@ -102,7 +97,7 @@ import vk_api
 	            delete_db_blacklist(user.vk_id)
 	            write_msg(user_ids, f'Анкета успешно удалена')
 	            if num >= len(all_users) - 1:
-	                write_msg(user_ids, f'Это была последняя анкета.\n'
+	                write_msg(user_ids, f'Анкеты закончились\n'
 	                                    f'Vkinder - вернуться в меню\n')
 	        elif msg_texts.lower() == 'q':
 	            write_msg(ids, 'Vkinder - для активации бота.')
