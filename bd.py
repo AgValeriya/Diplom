@@ -8,7 +8,7 @@ import vk_api
 	from sqlalchemy.exc import IntegrityError, InvalidRequestError
 	
 
-	# Подключение к БД
+	"""Подключение к БД"""
 	Base = declarative_base()
 	
 	engine = sq.create_engine('postgresql://user@localhost:5432/vkinder_db',
