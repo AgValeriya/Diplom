@@ -1,4 +1,3 @@
-import psycopg2
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 from functions import search_users, get_photo, sort_likes, json_create
